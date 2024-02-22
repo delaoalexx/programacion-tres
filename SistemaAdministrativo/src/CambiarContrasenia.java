@@ -19,17 +19,17 @@ class CambiarContrasenia extends JPanel
 		labelLogIn.setBounds(165,70,250,25);
 		add(labelLogIn);	
 		
-		JLabel labelUser = new JLabel("Old Password");
-		labelUser.setFont(new Font ("Arial", Font.BOLD,15));
-		labelUser.setBounds(180,120,150,25);
-		add(labelUser);
+		JLabel labelOldPassword = new JLabel("Old Password");
+		labelOldPassword.setFont(new Font ("Arial", Font.BOLD,15));
+		labelOldPassword.setBounds(180,120,150,25);
+		add(labelOldPassword);
 		
-		JTextField textFieldUser= new JTextField();
-		textFieldUser.setFont(new Font ("Arial", Font.PLAIN,15));
-		textFieldUser.setBounds(180,145,150,25);
-		add(textFieldUser);
+		JPasswordField oldPassword = new JPasswordField();
+		oldPassword.setFont(new Font ("Arial", Font.PLAIN,15));
+		oldPassword.setBounds(180,145,150,25);
+		add(oldPassword);
 		
-		JLabel labelPassword = new JLabel("New assword:");
+		JLabel labelPassword = new JLabel("New password");
 		labelPassword.setFont(new Font ("Arial", Font.BOLD,15));
 		labelPassword.setBounds(180,195,150,25);
 		add(labelPassword);
@@ -39,19 +39,22 @@ class CambiarContrasenia extends JPanel
 		password.setBounds(180,225,150,25);
 		add(password);
 		
-		JButton buttonLogIn = new JButton("Login");
-		buttonLogIn.setBounds(180,315,150,25);
+		JLabel labelCPassword = new JLabel("Confirm password");
+		labelCPassword.setFont(new Font ("Arial", Font.BOLD,15));
+		labelCPassword.setBounds(180,275,230,25);
+		add(labelCPassword);
+		
+		JPasswordField oPassword = new JPasswordField();
+		oPassword.setFont(new Font ("Arial", Font.PLAIN,15));
+		oPassword.setBounds(180,305,150,25);
+		add(oPassword);
+	
+		
+		JButton buttonLogIn = new JButton("Change");
+		buttonLogIn.setBounds(180,350,150,25);
 		add(buttonLogIn);
 		
-		JCheckBox check = new JCheckBox("Im not a robot", false);
-		check.setFont(new Font ("Arial", Font.PLAIN,15));
-		check.setBounds(190,270,150,25);
-		add(check);
-		
-		JLabel labelLostPassword = new JLabel("I forgot my password");
-		labelLostPassword.setFont(new Font ("Arial", Font.BOLD,15));
-		labelLostPassword.setBounds(177,355,180,25);
-		add(labelLostPassword);
+
 		
 	}
 	

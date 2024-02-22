@@ -30,9 +30,13 @@ class MyFrame extends JFrame
 		Registro registro = new Registro();
 		LogIn logIn = new LogIn();
 		CambiarContrasenia cambiarContra = new CambiarContrasenia();
+		Welcome welcome = new Welcome();
 		
 		setVisible(true);
-        add(cambiarContra);
+        //add(registro);
+		//add(logIn);
+        //add(cambiarContra);
+        //add(welcome);
 	}	
 }	
 
