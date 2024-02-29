@@ -16,7 +16,7 @@ class CambiarContrasenia extends JPanel
 		setLayout(null);
 		JLabel labelLogIn = new JLabel("Change Password");
 		labelLogIn.setFont(new Font ("Arial", Font.BOLD,25));
-		labelLogIn.setBounds(165,70,250,25);
+		labelLogIn.setBounds(145,70,250,25);
 		add(labelLogIn);	
 		
 		JLabel labelOldPassword = new JLabel("Old Password");
