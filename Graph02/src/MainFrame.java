@@ -3,13 +3,16 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainFrame extends JFrame 
+public class MainFrame extends JFrame implements KeyListener
 {
-	private JPanel canvas;
+	int cuadroX=200, cuadroY=415;
+	private JPanel canvas; 
 	
 	public MainFrame() 
 	{
@@ -20,6 +23,7 @@ public class MainFrame extends JFrame
 		setLocationRelativeTo(null);
 		setTitle("Mario");
 		setResizable(false);
+		addKeyListener(this);
 	    final Color BLACK_SHADOW = new Color(33,33,33);
 	    final Color AZUL_FONDO = new Color(179, 238, 254);
 		final Color ROSA_SUELO = new Color(255, 193, 177);
@@ -30,6 +34,7 @@ public class MainFrame extends JFrame
 		final Color VERDE_BOX = new Color(81, 217, 107);
 		final Color VERDE_TUNEL = new Color(22, 137, 20);
 		final Color VERDE_SOMBRA = new Color(41, 98, 44);
+		
 		
 		canvas = new JPanel() 
 		{
@@ -51,8 +56,10 @@ public class MainFrame extends JFrame
                 CoinBox cB3 = new CoinBox(70, 250, 50, 50, CAFE_BOX);
                 CoinBox cB4 = new CoinBox(940, 150, 50, 50, CAFE_BOX);
                 
-
                 Pipe pp1 = new Pipe(700, 300, 80, 150, VERDE_TUNEL, VERDE_BOX);
+                
+                //personaje
+                CoinBox ch = new CoinBox(cuadroX,cuadroY,30,30, VERDE_SOMBRA);
                 
                 // Dibujar las figuras
                 p1.draw(g2d);
@@ -60,11 +67,13 @@ public class MainFrame extends JFrame
                 p3.draw(g2d);
                 pp1.draw(g2d);
                 
+                
                 cB1.draw(g2d);
                 cB2.draw(g2d);
                 cB3.draw(g2d);
                 cB4.draw(g2d);
                 
+                ch.draw(g2d); //personaje
                 
                 Toolkit toolkit = Toolkit.getDefaultToolkit();
                 Dimension screenSize = toolkit.getScreenSize();
@@ -81,10 +90,50 @@ public class MainFrame extends JFrame
 				g2d.fillRect(0, 465, 1024, 3);//linea de abajo
             }
         };
-		
+        
         canvas.setBackground(new Color(179,238,254));
         add(canvas);
 	}
 	
+	@Override
+	public void keyPressed(KeyEvent e) {
+	
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+	
+		if(e.getKeyChar()== 'a') {
+        	System.out.println("Tecla oprimida");
+        	cuadroX=cuadroX-5;
+        	System.out.println(cuadroX);
+        	repaint();
+        	
+        }
+		if(e.getKeyChar()== 'd') {
+        	System.out.println("Tecla oprimida");
+        	cuadroX=cuadroX+5;
+        	System.out.println(cuadroX);
+        	repaint();
+        	
+        }
+		if(e.getKeyChar()== 'w') {
+        	System.out.println("salto");
+        	cuadroY=cuadroY-10;
+        	System.out.println(cuadroY);
+        	repaint();
+        }
+		if(e.getKeyChar()== 'w') {
+        	System.out.println("salto");
+        	cuadroY=cuadroY+10;
+        	System.out.println(cuadroY);
+        	repaint();
+        }
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
 
 }
+
