@@ -13,6 +13,7 @@ public class MainFrame extends JFrame implements KeyListener
 {
 	int cuadroX=200, cuadroY=415;
 	private JPanel canvas; 
+	boolean isJumping = false;
 	
 	public MainFrame() 
 	{
@@ -106,6 +107,7 @@ public class MainFrame extends JFrame implements KeyListener
         	System.out.println("Tecla oprimida");
         	cuadroX=cuadroX-5;
         	System.out.println(cuadroX);
+        	checkCollision();
         	repaint();
         	
         }
@@ -113,23 +115,63 @@ public class MainFrame extends JFrame implements KeyListener
         	System.out.println("Tecla oprimida");
         	cuadroX=cuadroX+5;
         	System.out.println(cuadroX);
+        	checkCollision();
         	repaint();
         	
         }
-		if(e.getKeyChar()== 'w') {
-        	System.out.println("salto");
-        	cuadroY=cuadroY-10;
-        	System.out.println(cuadroY);
-        	repaint();
+	
+        if (e.getKeyChar() == 'w' && !isJumping) {
+            isJumping = true;
+            checkCollision();
+            jump();
         }
-		if(e.getKeyChar()== 'w') {
-        	System.out.println("salto");
-        	cuadroY=cuadroY+10;
-        	System.out.println(cuadroY);
-        	repaint();
-        }
+	    }
+
+	    private void jump() {
+	        new Thread(() -> {
+	            for (int i = 0; i < 110; i++) {
+	                cuadroY -= 2; 
+	                repaint();
+	                try {
+	                    Thread.sleep(5); 
+	                } catch (InterruptedException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+	            for (int i = 0; i < 110; i++) {
+	                cuadroY += 2;
+	                repaint();
+	                try {
+	                    Thread.sleep(5); 
+	                } catch (InterruptedException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+	            isJumping = false;
+	        }).start();
+	    
+        
 		
 	}
+	    private void checkCollision() {
+	        // Colisión con p1
+	        if (cuadroX + 30 >= 400 && cuadroX <= 515 && cuadroY + 30 >= 280 && cuadroY <= 450) {
+	            System.out.println("Colisión con p1 detectada");
+	            cuadroX += 5;
+	        }
+	        
+	        // Colisión con p2
+	        if (cuadroX + 30 >= 300 && cuadroX <= 425 && cuadroY + 30 >= 335 && cuadroY <= 450) {
+	            System.out.println("Colisión con p2 detectada");
+	            cuadroX -= 5;
+	        }
+	        
+	        // Colisión con p3
+	        if (cuadroX + 30 >= 900 && cuadroX <= 1024 && cuadroY + 30 >= 335 && cuadroY <= 450) {
+	            System.out.println("Colisión con p3 detectada");
+	            cuadroX -= 5;
+	        }
+	    }
 	@Override
 	public void keyReleased(KeyEvent e) {
 		
